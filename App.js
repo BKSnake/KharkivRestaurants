@@ -9,31 +9,57 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
+const arrayOfList = [
+  { name: "Paprika", address: "Blab bala ba" },
+  { name: "Буфет", address: "prospekt Nauky" },
+  { name: "Tratoriya", address: "Kosmicheskaya st" }
+];
+
 export default class App extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Yahooo I am a React Native</Text>
+      <View style={styles.component}>
+        <Text style={styles.header}>Kharkiv Restaurant</Text>
+        {arrayOfList.map((item, index) => (
+          <View key={index} style={styles.cafeItem}>
+            <View style={styles.cafeInfo}>
+              <Text>{item.name}</Text>
+              <Text style={styles.cafeAddress}>{item.address}</Text>
+            </View>
+            <Text style={styles.cafeGetInfo}>View Info</Text>
+          </View>
+        ))}
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#F5FCFF"
+  component: {
+    flex: 1
   },
-  welcome: {
-    fontSize: 20,
+  header: {
+    padding: 40,
+    fontSize: 30,
     textAlign: "center",
-    margin: 10
+    margin: 10,
+    color: "#0066cc",
+    fontWeight: "300"
   },
-  instructions: {
-    textAlign: "center",
-    color: "#333333",
-    marginBottom: 5
+  cafeItem: {
+    flexDirection: "row",
+    padding: 15
+  },
+  cafeInfo: {
+    flexDirection: "column",
+    flex: 8
+  },
+  cafeAddress: {
+    color: "grey"
+  },
+  cafeGetInfo: {
+    flex: 2,
+    alignContent: "center",
+    justifyContent: "center"
   }
 });
