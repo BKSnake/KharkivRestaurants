@@ -7,7 +7,7 @@
  */
 
 import React, { Component } from "react";
-import { StyleSheet, Text, View, TextInput } from "react-native";
+import { StyleSheet, Text, View, TextInput, Platform } from "react-native";
 import HeaderStyle from "./HeaderStyle";
 
 const arrayOfList = [
@@ -28,9 +28,14 @@ export default class App extends Component {
   render() {
     const { searchText } = this.state;
 
+    const headerStyle = Platform.select({
+      ios: HeaderStyle.iOSHeader,
+      android: HeaderStyle.header
+    });
+
     return (
       <View style={styles.component}>
-        <Text style={HeaderStyle.header}>Kharkiv Restaurant</Text>
+        <Text style={headerStyle}>Kharkiv Restaurant</Text>
         <TextInput
           style={styles.input}
           placeholder="Live Search"
