@@ -7,14 +7,7 @@
  */
 
 import React, { Component } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  ScrollView,
-  FlatList
-} from "react-native";
+import { StyleSheet, View, TextInput, FlatList } from "react-native";
 import Header from "components/Header";
 import RestaurantRow from "components/RestaurantRow";
 

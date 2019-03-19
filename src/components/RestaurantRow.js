@@ -25,21 +25,28 @@ export default class RestaurantRow extends Component {
     const { showInfo } = this.state;
 
     return (
-      <View key={index} style={styles.cafeItem}>
-        <View style={styles.cafeInfo}>
-          <Text>{place.name}</Text>
-          <Text style={styles.cafeAddress}>{place.address}</Text>
+      <View
+        key={index}
+        style={{ backgroundColor: index % 2 === 0 ? "white" : "#f3f3f7" }}
+      >
+        <View style={styles.edges}>
+          <Text>{index + 1}</Text>
         </View>
-        <View style={styles.cafeGetInfo}>
-          <TouchableWithoutFeedback
+        <View style={styles.nameAddress}>
+          <Text>{place.name}</Text>
+          <Text style={styles.addressText}>{place.address}</Text>
+        </View>
+        <View style={styles.edges}>
+          <TouchableHighlight
             onPress={this.onPress}
             style={styles.button}
+            underlayColor="#5398dc"
           >
             <Text style={styles.buttonText}>Info</Text>
-          </TouchableWithoutFeedback>
+          </TouchableHighlight>
         </View>
         {showInfo && (
-          <View>
+          <View style={styles.info}>
             <Text>Show Info</Text>
           </View>
         )}
@@ -53,19 +60,19 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     padding: 15
   },
-  cafeInfo: {
-    flexDirection: "column",
-    flex: 8
-  },
-  cafeAddress: {
-    color: "grey"
-  },
-  cafeGetInfo: {
+  edges: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
     padding: 5,
     minWidth: 50
+  },
+  nameAddress: {
+    flexDirection: "column",
+    flex: 8
+  },
+  addressText: {
+    color: "grey"
   },
   button: {
     borderWidth: 1,
@@ -80,5 +87,14 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "#0066cc",
     fontSize: 12
+  },
+  info: {
+    marginHorizontal: 40,
+    marginVertical: 10,
+    padding: 10,
+    backgroundColor: "#fff",
+    borderWidth: 1,
+    borderColor: "#ddd",
+    borderRadius: 4
   }
 });
