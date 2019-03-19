@@ -7,10 +7,39 @@
  */
 
 import React, { Component } from "react";
-import { StyleSheet, Text, View, TextInput, Platform } from "react-native";
-import Header from "./Header";
+import { StyleSheet, Text, View, TextInput, ScrollView } from "react-native";
+import Header from "components/Header";
 
 const arrayOfList = [
+  { name: "Paprika", address: "Blab bala ba" },
+  { name: "Буфет", address: "prospekt Nauky" },
+  { name: "Tratoriya", address: "Kosmicheskaya st" },
+  { name: "Paprika", address: "Blab bala ba" },
+  { name: "Буфет", address: "prospekt Nauky" },
+  { name: "Tratoriya", address: "Kosmicheskaya st" },
+  { name: "Paprika", address: "Blab bala ba" },
+  { name: "Буфет", address: "prospekt Nauky" },
+  { name: "Tratoriya", address: "Kosmicheskaya st" },
+  { name: "Paprika", address: "Blab bala ba" },
+  { name: "Буфет", address: "prospekt Nauky" },
+  { name: "Tratoriya", address: "Kosmicheskaya st" },
+  { name: "Paprika", address: "Blab bala ba" },
+  { name: "Буфет", address: "prospekt Nauky" },
+  { name: "Tratoriya", address: "Kosmicheskaya st" },
+  { name: "Paprika", address: "Blab bala ba" },
+  { name: "Буфет", address: "prospekt Nauky" },
+  { name: "Paprika", address: "Blab bala ba" },
+  { name: "Буфет", address: "prospekt Nauky" },
+  { name: "Tratoriya", address: "Kosmicheskaya st" },
+  { name: "Paprika", address: "Blab bala ba" },
+  { name: "Буфет", address: "prospekt Nauky" },
+  { name: "Tratoriya", address: "Kosmicheskaya st" },
+  { name: "Paprika", address: "Blab bala ba" },
+  { name: "Буфет", address: "prospekt Nauky" },
+  { name: "Tratoriya", address: "Kosmicheskaya st" },
+  { name: "Paprika", address: "Blab bala ba" },
+  { name: "Буфет", address: "prospekt Nauky" },
+  { name: "Tratoriya", address: "Kosmicheskaya st" },
   { name: "Paprika", address: "Blab bala ba" },
   { name: "Буфет", address: "prospekt Nauky" },
   { name: "Tratoriya", address: "Kosmicheskaya st" }
@@ -38,22 +67,24 @@ export default class App extends Component {
           value={searchText}
         />
 
-        {arrayOfList
-          .filter(place => {
-            return (
-              !searchText ||
-              place.name.toLowerCase().indexOf(searchText.toLowerCase()) > -1
-            );
-          })
-          .map((item, index) => (
-            <View key={index} style={styles.cafeItem}>
-              <View style={styles.cafeInfo}>
-                <Text>{item.name}</Text>
-                <Text style={styles.cafeAddress}>{item.address}</Text>
+        <ScrollView contentContainerStyle={{ paddingTop: 30 }}>
+          {arrayOfList
+            .filter(place => {
+              return (
+                !searchText ||
+                place.name.toLowerCase().indexOf(searchText.toLowerCase()) > -1
+              );
+            })
+            .map((item, index) => (
+              <View key={index} style={styles.cafeItem}>
+                <View style={styles.cafeInfo}>
+                  <Text>{item.name}</Text>
+                  <Text style={styles.cafeAddress}>{item.address}</Text>
+                </View>
+                <Text style={styles.cafeGetInfo}>View Info</Text>
               </View>
-              <Text style={styles.cafeGetInfo}>View Info</Text>
-            </View>
-          ))}
+            ))}
+        </ScrollView>
       </View>
     );
   }
@@ -80,7 +111,6 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   input: {
-    marginBottom: 30,
     padding: 10,
     paddingHorizontal: 20,
     fontSize: 16,
