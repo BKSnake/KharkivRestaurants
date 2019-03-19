@@ -31,9 +31,12 @@ export default class RestaurantRow extends Component {
           <Text style={styles.cafeAddress}>{place.address}</Text>
         </View>
         <View style={styles.cafeGetInfo}>
-          <TouchableOpacity onPress={this.onPress} style={styles.button}>
+          <TouchableWithoutFeedback
+            onPress={this.onPress}
+            style={styles.button}
+          >
             <Text style={styles.buttonText}>Info</Text>
-          </TouchableOpacity>
+          </TouchableWithoutFeedback>
         </View>
         {showInfo && (
           <View>
