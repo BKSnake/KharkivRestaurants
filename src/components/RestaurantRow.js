@@ -1,5 +1,12 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, Button } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  TouchableHighlight,
+  TouchableWithoutFeedback
+} from "react-native";
 
 export default class RestaurantRow extends Component {
   constructor(props) {
@@ -24,12 +31,9 @@ export default class RestaurantRow extends Component {
           <Text style={styles.cafeAddress}>{place.address}</Text>
         </View>
         <View style={styles.cafeGetInfo}>
-          <Button
-            title="Info"
-            color="#c93f0b"
-            accessibilityLabel="Info"
-            onPress={this.onPress}
-          />
+          <TouchableOpacity onPress={this.onPress} style={styles.button}>
+            <Text style={styles.buttonText}>Info</Text>
+          </TouchableOpacity>
         </View>
         {showInfo && (
           <View>
@@ -55,8 +59,23 @@ const styles = StyleSheet.create({
   },
   cafeGetInfo: {
     flex: 1,
-    alignContent: "center",
+    alignItems: "center",
     justifyContent: "center",
+    padding: 5,
     minWidth: 50
+  },
+  button: {
+    borderWidth: 1,
+    borderColor: "#0066CC",
+    borderRadius: 14,
+    paddingHorizontal: 3,
+    paddingVertical: 3,
+    backgroundColor: "#fff",
+    color: "#912b04",
+    fontSize: 12
+  },
+  buttonText: {
+    color: "#0066cc",
+    fontSize: 12
   }
 });
