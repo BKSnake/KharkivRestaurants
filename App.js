@@ -7,7 +7,8 @@
  */
 
 import React, { Component } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, TextInput } from "react-native";
+import HeaderStyle from "./HeaderStyle";
 
 const arrayOfList = [
   { name: "Paprika", address: "Blab bala ba" },
@@ -16,19 +17,43 @@ const arrayOfList = [
 ];
 
 export default class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      searchText: ""
+    };
+  }
+
   render() {
+    const { searchText } = this.state;
+
     return (
       <View style={styles.component}>
-        <Text style={styles.header}>Kharkiv Restaurant</Text>
-        {arrayOfList.map((item, index) => (
-          <View key={index} style={styles.cafeItem}>
-            <View style={styles.cafeInfo}>
-              <Text>{item.name}</Text>
-              <Text style={styles.cafeAddress}>{item.address}</Text>
+        <Text style={HeaderStyle.header}>Kharkiv Restaurant</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Live Search"
+          onChangeText={text => this.setState({ searchText: text })}
+          value={searchText}
+        />
+
+        {arrayOfList
+          .filter(place => {
+            return (
+              !searchText ||
+              place.name.toLowerCase().indexOf(searchText.toLowerCase()) > -1
+            );
+          })
+          .map((item, index) => (
+            <View key={index} style={styles.cafeItem}>
+              <View style={styles.cafeInfo}>
+                <Text>{item.name}</Text>
+                <Text style={styles.cafeAddress}>{item.address}</Text>
+              </View>
+              <Text style={styles.cafeGetInfo}>View Info</Text>
             </View>
-            <Text style={styles.cafeGetInfo}>View Info</Text>
-          </View>
-        ))}
+          ))}
       </View>
     );
   }
@@ -37,14 +62,6 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   component: {
     flex: 1
-  },
-  header: {
-    padding: 40,
-    fontSize: 30,
-    textAlign: "center",
-    margin: 10,
-    color: "#0066cc",
-    fontWeight: "300"
   },
   cafeItem: {
     flexDirection: "row",
@@ -61,5 +78,15 @@ const styles = StyleSheet.create({
     flex: 2,
     alignContent: "center",
     justifyContent: "center"
+  },
+  input: {
+    marginBottom: 30,
+    padding: 10,
+    paddingHorizontal: 20,
+    fontSize: 16,
+    color: "#444",
+    borderBottomWidth: 1,
+    borderColor: "#ddd",
+    backgroundColor: "#F5F5F5"
   }
 });
