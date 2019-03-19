@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import {} from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 
-class RestaurantRow extends Component {
+export default class RestaurantRow extends Component {
   render() {
-    const {place, index} = this.props;
+    const { place, index } = this.props;
 
     return (
       <View key={index} style={styles.cafeItem}>
@@ -34,6 +34,4 @@ const styles = StyleSheet.create({
     alignContent: "center",
     justifyContent: "center"
   }
-}
-
-export default RestaurantRow;
+});
