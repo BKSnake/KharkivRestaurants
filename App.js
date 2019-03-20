@@ -6,28 +6,69 @@
  * @flow
  */
 
-import React, { Component } from "react";
-import { createStackNavigator, createAppContainer } from "react-navigation";
+import React from "react";
+import {
+  createStackNavigator,
+  createAppContainer,
+  createBottomTabNavigator
+} from "react-navigation";
+
+import Icon from "react-native-vector-icons/FontAwesome";
+
 import ReastaurantList from "./src/components/ReastaurantList";
 import RestauranInfo from "./src/components/RestauranInfo";
+import About from "./src/components/About";
 
-const AppNavigator = createStackNavigator({
-  Home: {
-    screen: ReastaurantList
+const AppNavigator = createStackNavigator(
+  {
+    Home: {
+      screen: ReastaurantList
+    },
+    Info: {
+      screen: RestauranInfo,
+      navigationOptions: () => ({
+        headerStyle: {
+          backgroundColor: "#0066cc",
+          color: "#fff"
+        },
+        headerTintColor: "#fff",
+        headerTitleStyle: {
+          color: "#fff"
+        },
+        tabBarIcon: ({ tintColor }) => {
+          return <Icon name="list" color={tintColor} size={22} />;
+        }
+      })
+    }
   },
-  Info: {
-    screen: RestauranInfo,
+  {
+    initialRouteName: "Home"
+  }
+);
+
+const AppTabs = createBottomTabNavigator({
+  List: {
+    screen: AppNavigator,
     navigationOptions: () => ({
-      headerStyle: {
-        backgroundColor: "#0066cc",
-        color: "#fff"
+      tabBarIcon: ({ tintColor }) => {
+        return <Icon name="list" color={tintColor} size={22} />;
       },
-      headerTintColor: "#fff",
-      headerTitleStyle: {
-        color: "#fff"
+      tabBarOptions: {
+        activeBackgroundColor: "#e6f0fa"
+      }
+    })
+  },
+  About: {
+    screen: About,
+    navigationOptions: () => ({
+      tabBarIcon: ({ tintColor }) => {
+        return <Icon name="info-circle" color={tintColor} size={22} />;
+      },
+      tabBarOptions: {
+        activeBackgroundColor: "#e6f0fa"
       }
     })
   }
 });
 
-export default createAppContainer(AppNavigator);
+export default createAppContainer(AppTabs);
