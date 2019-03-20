@@ -9,6 +9,7 @@
 import React, { Component } from "react";
 import { StyleSheet, View, TextInput, FlatList } from "react-native";
 import Header from "components/Header";
+import axios from "axios";
 import RestaurantRow from "components/RestaurantRow";
 
 const restaurants = [
@@ -57,9 +58,9 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:3000/restaurants")
-      .then(response => response.json())
-      .then(json => this.setState({ restaurants: json }));
+    axios
+      .get("http://localhost:3000/restaurants")
+      .then(result => this.setState({ restaurants: result.data }));
   }
 
   render() {
