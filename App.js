@@ -7,10 +7,12 @@
  */
 
 import React, { Component } from "react";
-import { StyleSheet, View, TextInput, FlatList } from "react-native";
+import { StyleSheet, View, TextInput, FlatList, Image } from "react-native";
 import Header from "components/Header";
 import axios from "axios";
+
 import RestaurantRow from "components/RestaurantRow";
+import PizzaImg from "images/pizza.png";
 
 const restaurants = [
   { name: "Paprika", address: "Blab bala ba" },
@@ -68,6 +70,10 @@ export default class App extends Component {
 
     return (
       <View style={styles.component}>
+        <View style={{ marginTop: 30, alignItems: "center" }}>
+          <Image source={PizzaImg} />
+        </View>
+
         <Header />
         <TextInput
           style={styles.input}
