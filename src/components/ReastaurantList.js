@@ -23,6 +23,10 @@ class ReastauranList extends Component {
     };
   }
 
+  static navigationOptions = {
+    header: null
+  };
+
   componentDidMount() {
     axios
       .get("http://localhost:3000/restaurants")

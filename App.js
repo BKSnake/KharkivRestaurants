@@ -16,7 +16,17 @@ const AppNavigator = createStackNavigator({
     screen: ReastaurantList
   },
   Info: {
-    screen: RestauranInfo
+    screen: RestauranInfo,
+    navigationOptions: () => ({
+      headerStyle: {
+        backgroundColor: "#0066cc",
+        color: "#fff"
+      },
+      headerTintColor: "#fff",
+      headerTitleStyle: {
+        color: "#fff"
+      }
+    })
   }
 });
 
