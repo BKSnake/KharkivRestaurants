@@ -8,6 +8,8 @@ import {
   TouchableWithoutFeedback
 } from "react-native";
 
+import Icon from "react-native-vector-icons/FontAwesome";
+
 export default class RestaurantRow extends Component {
   constructor(props) {
     super(props);
@@ -33,8 +35,11 @@ export default class RestaurantRow extends Component {
             { backgroundColor: index % 2 === 0 ? "white" : "#f3f3f7" }
           ]}
         >
-          <View style={styles.edges}>
-            <Text>{index + 1}</Text>
+          <View style={styles.starts}>
+            <Icon name="star" color="#FFD64c" />
+            <Icon name="star" color="#FFD64c" />
+            <Icon name="star" color="#FFD64c" />
+            <Icon name="star-half" color="#FFD64c" />
           </View>
           <View style={styles.nameAddress}>
             <Text>{place.name}</Text>
@@ -72,6 +77,14 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    padding: 5,
+    minWidth: 50
+  },
+  starts: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "flex-start",
     padding: 5,
     minWidth: 50
   },
