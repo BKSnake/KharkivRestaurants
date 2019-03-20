@@ -9,8 +9,8 @@
 import React from "react";
 import {
   createStackNavigator,
-  createAppContainer,
-  createBottomTabNavigator
+  createBottomTabNavigator,
+  createAppContainer
 } from "react-navigation";
 
 import Icon from "react-native-vector-icons/FontAwesome";
@@ -18,6 +18,7 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import ReastaurantList from "./src/components/ReastaurantList";
 import RestauranInfo from "./src/components/RestauranInfo";
 import About from "./src/components/About";
+import AddReview from "./src/components/AddReview";
 
 const AppNavigator = createStackNavigator(
   {
@@ -46,7 +47,7 @@ const AppNavigator = createStackNavigator(
   }
 );
 
-const AppTabs = createBottomTabNavigator({
+const MainTabs = createBottomTabNavigator({
   List: {
     screen: AppNavigator,
     navigationOptions: () => ({
@@ -71,4 +72,16 @@ const AppTabs = createBottomTabNavigator({
   }
 });
 
-export default createAppContainer(AppTabs);
+const AppStack = createStackNavigator(
+  {
+    Tabs: { screen: MainTabs },
+    AddReview: { screen: AddReview }
+  },
+  {
+    mode: "modal",
+    headerMode: "none",
+    navigationOptions: { gesturesEnabled: false }
+  }
+);
+
+export default createAppContainer(AppStack);
