@@ -11,7 +11,7 @@ import { StyleSheet, View, TextInput, FlatList } from "react-native";
 import Header from "components/Header";
 import RestaurantRow from "components/RestaurantRow";
 
-const arrayOfList = [
+const restaurants = [
   { name: "Paprika", address: "Blab bala ba" },
   { name: "Буwerwerwewфет", address: "prospekt Nauky" },
   { name: "rwwrwerwerw", address: "Kosmicheskaya st" },
@@ -51,8 +51,15 @@ export default class App extends Component {
     super(props);
 
     this.state = {
-      searchText: ""
+      searchText: "",
+      restaurants: []
     };
+  }
+
+  componentDidMount() {
+    fetch("http://localhost:3000/restaurants")
+      .then(response => response.json())
+      .then(json => this.setState({ restaurants: json }));
   }
 
   render() {
@@ -69,7 +76,7 @@ export default class App extends Component {
         />
 
         <FlatList
-          data={arrayOfList.filter(place => {
+          data={restaurants.filter(place => {
             return (
               !searchText ||
               place.name.toLowerCase().indexOf(searchText.toLowerCase()) > -1
