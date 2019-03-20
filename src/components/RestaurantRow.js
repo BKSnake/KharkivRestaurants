@@ -19,7 +19,8 @@ export default class RestaurantRow extends Component {
     };
   }
   onPress = () => {
-    this.setState(state => ({ showInfo: !state.showInfo }));
+    //this.setState(state => ({ showInfo: !state.showInfo }));
+    this.props.navigation.navigate("Info");
   };
 
   render() {
